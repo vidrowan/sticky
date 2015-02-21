@@ -86,7 +86,7 @@
           var stickyElement = $(this);
 
           var stickyId = stickyElement.attr('id');
-          var wrapperId = stickyId ? stickyId + '-' + defaults.wrapperClassName : defaults.wrapperClassName 
+          var wrapperId = stickyId ? stickyId + '-' + defaults.wrapperClassName : defaults.wrapperClassName
           var wrapper = $('<div></div>')
             .attr('id', stickyId + '-sticky-wrapper')
             .addClass(o.wrapperClassName);
@@ -111,6 +111,12 @@
             className: o.className,
             getWidthFrom: o.getWidthFrom,
             responsiveWidth: o.responsiveWidth
+          });
+
+          $(window).scroll(function(){
+            stickyElement.css({
+              'left': $(this).position().left - $(this).scrollLeft()
+            });
           });
         });
       },
@@ -169,4 +175,6 @@
   $(function() {
     setTimeout(scroller, 0);
   });
+
+
 })(jQuery);
